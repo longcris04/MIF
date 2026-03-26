@@ -82,6 +82,80 @@ pip install -r requirements.txt
 
 Coming soon...
 
+## Evaluation
+
+The repository includes a Python script to evaluate fusion results using MATLAB-based metrics.
+
+### Prerequisites for Evaluation
+
+- MATLAB installed on your system
+- MATLAB Engine API for Python (optional, for faster execution)
+  ```bash
+  # To install MATLAB Engine API (from MATLAB installation directory)
+  cd "matlabroot\extern\engines\python"
+  python setup.py install
+  ```
+
+### Running Evaluation
+
+The `evaluation.py` script calculates 29 image quality metrics for fusion results.
+
+**Basic usage:**
+```bash
+python evaluation.py \
+  --path1 "C:\Users\Admin\MIF\DatasetBMP_update\CT-MRI\test\CT" \
+  --path2 "C:\Users\Admin\MIF\DatasetBMP_update\CT-MRI\test\MRI" \
+  --path3 "C:\Users\Admin\MIF\FATFusion\results_gray\CT-MRI" \
+  --member "CT-MRI"
+```
+
+**With custom output folder:**
+```bash
+python evaluation.py \
+  --path1 "C:\Users\Admin\MIF\DatasetBMP_update\PET-MRI\test\PET" \
+  --path2 "C:\Users\Admin\MIF\DatasetBMP_update\PET-MRI\test\MRI" \
+  --path3 "C:\Users\Admin\MIF\FATFusion\results_gray\PET-MRI" \
+  --member "PET-MRI" \
+  --output "C:\Users\Admin\MIF\evaluation_results"
+```
+
+**Using subprocess method (if MATLAB Engine API is not installed):**
+```bash
+python evaluation.py \
+  --path1 "..." \
+  --path2 "..." \
+  --path3 "..." \
+  --member "SPECT-MRI" \
+  --method subprocess
+```
+
+### Evaluation Metrics
+
+The script computes 29 metrics including:
+
+**Basic metrics (4):**
+- MLI (Mean Luminance Intensity)
+- SD (Standard Deviation)
+- Entropy
+- AG (Average Gradient)
+
+**Advanced metrics (22):**
+- Qabf, VIFF, FMI, MI (Mutual Information)
+- Xydeas, Qp, Q, Qw, Qe (Peilla variants)
+- NIQE, SSEQ, FSIM, SSIM, TMQI
+- PSNR, Chen, CB (Chen-Blum)
+- metricWang, NCIE, metricZhao
+
+**Additional:**
+- Processing time per image
+
+### Output
+
+The evaluation generates:
+- Excel file (`.xlsx`) with detailed metrics for each image
+- Text file (`.txt`) with formatted results
+- Statistical summary (Max, Min, Mean, Std) for all metrics
+
 ## License
 
 TBD

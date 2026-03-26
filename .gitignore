@@ -2,7 +2,8 @@
 datasets/
 logs/
 result/
-
+matlab_evaluation_code/
+networks/medsam_vit_b.pth
 # Python
 __pycache__/
 *.py[cod]
@@ -46,9 +47,12 @@ Thumbs.db
 *.pth
 *.h5
 *.ckpt
-checkpoint/
+checkpoints/
 snapshots/
 
 # Logs and results
 *.log
 *.csv
+
+results/
+post_processed_results/
